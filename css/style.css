@@ -1,0 +1,732 @@
+/* 基础样式和变量 */
+:root {
+    --neon-pink: #ff2a6d;
+    --neon-blue: #05d9e8;
+    --neon-purple: #b967ff;
+    --neon-green: #39ff14;
+    --dark-bg: #0d0221;
+    --darker-bg: #070113;
+    --dark-accent: #1a1025;
+    --text-color: #ffffff;
+    --secondary-text: #b3b3b3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: "Share Tech Mono", monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+section {
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 噪点背景效果 */
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/png;base64,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");
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 导航栏 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(7, 1, 19, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.glitch-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-icons {
+    margin-top: .3rem;
+}
+
+.nav-icon {
+    font-size: 1.7rem;
+}
+
+.navbar h1 {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "Orbitron", sans-serif;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.neon-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--neon-blue);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.neon-link:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.neon-link:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* 故障效果 */
+.glitch {
+    position: relative;
+    color: var(--text-color);
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--neon-pink);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: 2px 0 var(--neon-blue);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 4s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(23px, 9999px, 84px, 0);
+    }
+    5% {
+        clip: rect(47px, 9999px, 59px, 0);
+    }
+    10% {
+        clip: rect(17px, 9999px, 68px, 0);
+    }
+    15% {
+        clip: rect(91px, 9999px, 6px, 0);
+    }
+    20% {
+        clip: rect(89px, 9999px, 92px, 0);
+    }
+    25% {
+        clip: rect(29px, 9999px, 25px, 0);
+    }
+    30% {
+        clip: rect(48px, 9999px, 23px, 0);
+    }
+    35% {
+        clip: rect(54px, 9999px, 84px, 0);
+    }
+    40% {
+        clip: rect(59px, 9999px, 57px, 0);
+    }
+    45% {
+        clip: rect(6px, 9999px, 59px, 0);
+    }
+    50% {
+        clip: rect(84px, 9999px, 97px, 0);
+    }
+    55% {
+        clip: rect(48px, 9999px, 95px, 0);
+    }
+    60% {
+        clip: rect(90px, 9999px, 4px, 0);
+    }
+    65% {
+        clip: rect(40px, 9999px, 11px, 0);
+    }
+    70% {
+        clip: rect(55px, 9999px, 23px, 0);
+    }
+    75% {
+        clip: rect(42px, 9999px, 24px, 0);
+    }
+    80% {
+        clip: rect(77px, 9999px, 50px, 0);
+    }
+    85% {
+        clip: rect(20px, 9999px, 18px, 0);
+    }
+    90% {
+        clip: rect(66px, 9999px, 9px, 0);
+    }
+    95% {
+        clip: rect(33px, 9999px, 55px, 0);
+    }
+    100% {
+        clip: rect(67px, 9999px, 98px, 0);
+    }
+}
+
+/* 英雄区 */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(7, 1, 19, 0.8), rgba(7, 1, 19, 0.6)),
+        url("https://source.unsplash.com/1600x900/?cyberpunk,city,night")
+            no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.cyber-title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cyber-subtitle {
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--neon-green);
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.neon-button {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--neon-blue);
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    border-radius: 2px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.neon-button:hover {
+    background-color: rgba(5, 217, 232, 0.1);
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.neon-button.alt {
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+}
+
+.neon-button.alt:hover {
+    background-color: rgba(255, 42, 109, 0.1);
+    box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-blue),
+        var(--neon-blue),
+        transparent
+    );
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    animation: scan 3s linear infinite;
+    z-index: 1;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* 通用部分样式 */
+.section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+.cyber-heading {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: inline-block;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.cyber-heading .accent {
+    color: var(--neon-pink);
+}
+
+.section-line {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--neon-pink),
+        var(--neon-blue),
+        transparent
+    );
+    margin: 0 auto;
+}
+
+/* 关于部分 */
+.about-section {
+    background-color: var(--darker-bg);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-card {
+    height: 100%;
+    background-color: var(--dark-accent);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 42, 109, 0.3);
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.profile-image {
+    margin-top: 10%;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-placeholder {
+    width: 250px;
+    height: 100%;
+    background-color: #1a1a1a;
+    color: var(--secondary-text);
+    font-size: 1.5rem;
+}
+
+.profile-details {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.profile-details h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-title {
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--neon-blue);
+    transform: translateY(-3px);
+}
+
+.terminal-container {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.terminal-header {
+    background-color: #1e1e1e;
+    padding: 10px 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #ff5f57;
+}
+
+.terminal-button:nth-child(2) {
+    background-color: #ffbd2e;
+}
+
+.terminal-button:nth-child(3) {
+    background-color: #28ca41;
+}
+
+.terminal-title {
+    color: var(--secondary-text);
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+.terminal-body {
+    background-color: #0c0c0c;
+    padding: 1.5rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: "Share Tech Mono", monospace;
+    line-height: 1.6;
+}
+
+.terminal-prompt {
+    color: var(--neon-green);
+    margin-right: 10px;
+}
+
+.terminal-text {
+    color: var(--text-color);
+}
+
+.terminal-output {
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+.terminal-art {
+    font-family: "Courier New", monospace;
+    white-space: pre;
+    margin: 0.5rem 0;
+    color: #00ff00;
+    font-size: 0.9em;
+    line-height: 1.1;
+}
+
+.neon-text {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* 项目部分 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background-color: var(--dark-accent);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(185, 103, 255, 0.3);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(185, 103, 255, 0.2);
+}
+
+.project-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-text);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 1, 19, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-image:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link {
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: var(--neon-blue);
+    color: #0c0c0c;
+    transform: scale(1.1);
+}
+
+/* 继续 project-info 样式 */
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.project-desc {
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-tag {
+    background-color: rgba(185, 103, 255, 0.1);
+    color: var(--neon-purple);
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(185, 103, 255, 0.3);
+}
+
+/* 页脚 */
+.footer {
+    background-color: var(--dark-bg);
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(7, 1, 19, 0.95);
+        padding: 1rem;
+        text-align: center;
+        gap: 1rem;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 42, 109, 0.3);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .cyber-title {
+        font-size: 2.5rem;
+    }
+
+    .cyber-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .cyber-heading {
+        font-size: 2rem;
+    }
+
+    .about-content,
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .profile-container,
+    .terminal-container,
+    .contact-info,
+    .contact-form {
+        width: 100%;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
