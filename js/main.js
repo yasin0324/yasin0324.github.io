@@ -194,23 +194,43 @@ document.addEventListener("DOMContentLoaded", function () {
     const addGlow = () => {
         const glow = document.createElement("div");
         glow.className = "glow";
-        document.body.appendChild(glow);
+        // Apply essential styles BEFORE appending to prevent layout shift
+        glow.style.position = "absolute";
+        glow.style.pointerEvents = "none";
 
-        const size = Math.random() * 100 + 50;
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
+        let generatedSize = Math.random() * 100 + 50; // Potential range: 50 to 150
 
-        glow.style.width = `${size}px`;
-        glow.style.height = `${size}px`;
+        // Ensure the glow element fits within the viewport dimensions
+        // Use 90% of viewport dimensions as max to leave some margin
+        const maxWidth = window.innerWidth * 0.9;
+        const maxHeight = window.innerHeight * 0.9;
+
+        let effectiveSize = Math.min(generatedSize, maxWidth, maxHeight);
+        // Ensure a minimum size (e.g., 20px), but not larger than generatedSize if it was already small
+        effectiveSize = Math.max(effectiveSize, Math.min(generatedSize, 20));
+        effectiveSize = Math.max(effectiveSize, 1); // Ensure size is at least 1px to avoid issues with 0 or negative
+
+        // Calculate positions ensuring the element stays within bounds
+        const x = Math.random() * (window.innerWidth - effectiveSize);
+        // Subtract 1 from the available vertical space for y to create a small buffer
+        const yMaxPosition = window.innerHeight - effectiveSize - 1;
+        const y = Math.random() * Math.max(0, yMaxPosition); // Ensure y is not negative
+
+        glow.style.width = `${effectiveSize}px`;
+        glow.style.height = `${effectiveSize}px`;
+        // position and pointerEvents already set earlier
         glow.style.left = `${x}px`;
         glow.style.top = `${y}px`;
+
+        // Now append the fully styled element
+        // document.body.appendChild(glow); // 暂时注释掉，以排查 glow 元素是否是导致问题的根源
 
         setTimeout(() => {
             glow.remove();
         }, 2000);
     };
 
-    setInterval(addGlow, 3000);
+    // setInterval(addGlow, 3000); // 暂时注释掉，以排查 glow 元素是否是导致问题的根源
 });
 
 // 添加滚动检测，实现元素渐入效果

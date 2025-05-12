@@ -19,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    /* overflow-y: hidden; */ /* 防止垂直方向内容溢出导致额外高度 */
 }
 
 body {
@@ -27,6 +28,7 @@ body {
     font-family: "Share Tech Mono", monospace;
     line-height: 1.6;
     overflow-x: hidden;
+    /* overflow-y: hidden; */ /* 防止垂直方向内容溢出导致额外高度 */
     position: relative;
 }
 
@@ -72,7 +74,7 @@ section {
 }
 
 .nav-icons {
-    margin-top: .3rem;
+    margin-top: 0.3rem;
 }
 
 .nav-icon {
@@ -348,7 +350,7 @@ section {
         top: 0;
     }
     100% {
-        top: 100%;
+        top: calc(100% - 5px);
     }
 }
 
