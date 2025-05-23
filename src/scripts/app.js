@@ -1,19 +1,26 @@
 /**
- * 应用主入口文件
- * 负责整个应用的初始化和模块协调
+ * Main application entry file
+ * Responsible for application initialization and module coordination
  */
 
-// 导入工具模块
+// Import utility modules
 import { UIEffectsManager } from "./ui-effects.js";
 
-// 导入复古效果模块
+// Import retro effects module
 import "./retro-effects.js";
 
-// 导入ASCII艺术增强器
+// Import ASCII art enhancer
 import "./ascii-art-enhancer.js";
 
+// Import Matrix digital rain
+import "./matrix.js";
+
+// Import new feature modules
+import ParticleSystem from "./particle-system.js";
+import MusicVisualizer from "./music-visualizer.js";
+
 /**
- * 导航组件类
+ * Navigation component class
  */
 class Navigation {
   constructor() {
@@ -35,7 +42,7 @@ class Navigation {
       this.hamburger.addEventListener("click", () => this.toggleMenu());
     }
 
-    // 设置声音控制按钮
+    // Setup sound control button
     this.setupSoundToggle();
   }
 
@@ -65,7 +72,7 @@ class Navigation {
     });
   }
 
-  // 声音控制功能
+  // Sound control functionality
   setupSoundToggle() {
     const soundToggle = document.getElementById("sound-toggle");
     const soundIcon = document.getElementById("sound-icon");
@@ -78,7 +85,7 @@ class Navigation {
         }
       });
 
-      // 初始化按钮状态
+      // Initialize button state
       const initialState = window.retroEffects
         ? window.retroEffects.isSoundEnabled()
         : true;
@@ -86,24 +93,24 @@ class Navigation {
     }
   }
 
-  // 更新声音按钮的显示状态
+  // Update sound button display state
   updateSoundButton(button, icon, soundEnabled) {
     if (soundEnabled) {
       button.classList.remove("muted");
       button.classList.add("active");
       icon.className = "fas fa-volume-up";
-      button.title = "关闭声音";
+      button.title = "Mute Sound";
     } else {
       button.classList.add("muted");
       button.classList.remove("active");
       icon.className = "fas fa-volume-mute";
-      button.title = "开启声音";
+      button.title = "Enable Sound";
     }
   }
 }
 
 /**
- * 表单处理类
+ * Contact form handler class
  */
 class ContactForm {
   constructor() {
@@ -135,7 +142,7 @@ class ContactForm {
       message: formData.get("message"),
     };
 
-    console.log("表单提交:", data);
+    console.log("Form submitted:", data);
     this.showSuccessState();
 
     setTimeout(() => this.resetForm(), 3000);
@@ -144,7 +151,7 @@ class ContactForm {
   showSuccessState() {
     if (this.submitButton) {
       this.submitButton.innerHTML =
-        '<span class="button-text">已发送!</span><span class="button-icon"><i class="fas fa-check"></i></span>';
+        '<span class="button-text">Sent!</span><span class="button-icon"><i class="fas fa-check"></i></span>';
       this.submitButton.style.borderColor = "var(--neon-green)";
       this.submitButton.style.color = "var(--neon-green)";
     }
@@ -155,7 +162,7 @@ class ContactForm {
 
     if (this.submitButton) {
       this.submitButton.innerHTML =
-        '<span class="button-text">发送</span><span class="button-icon"><i class="fas fa-paper-plane"></i></span>';
+        '<span class="button-text">Send</span><span class="button-icon"><i class="fas fa-paper-plane"></i></span>';
       this.submitButton.style.borderColor = "var(--neon-blue)";
       this.submitButton.style.color = "var(--neon-blue)";
     }
@@ -163,7 +170,7 @@ class ContactForm {
 }
 
 /**
- * 主应用类
+ * Main application class
  */
 class App {
   constructor() {
@@ -171,60 +178,214 @@ class App {
     this.contactForm = null;
     this.uiEffects = null;
     this.matrixRain = null;
+    this.particleSystem = null;
+    this.musicVisualizer = null;
 
     this.init();
   }
 
   init() {
-    // 等待DOM加载完成
+    // Wait for DOM to load
     document.addEventListener("DOMContentLoaded", () => {
       this.initializeComponents();
       this.initializeEffects();
       this.setupPageLoad();
+      this.initializeNewFeatures();
     });
   }
 
   initializeComponents() {
-    // 初始化导航
+    // Initialize navigation
     this.navigation = new Navigation();
 
-    // 初始化表单
+    // Initialize contact form
     this.contactForm = new ContactForm();
-
-    // 初始化UI效果
-    this.uiEffects = new UIEffectsManager();
-    this.uiEffects.init();
   }
 
   initializeEffects() {
-    // 初始化复古效果
-    if (window.retroEffects) {
-      window.retroEffects.initPageLoadEffects();
+    // Initialize UI effects manager
+    this.uiEffects = new UIEffectsManager();
+    this.uiEffects.init();
+
+    // Initialize Matrix rain effect
+    if (window.matrixRain) {
+      this.matrixRain = window.matrixRain;
     }
 
-    // 延迟初始化Matrix效果
+    // Initialize retro effects - no need to call init() as it's already initialized
+    if (window.retroEffects) {
+      // Enable audio on first user interaction
+      document.addEventListener(
+        "click",
+        () => {
+          window.retroEffects.enableAudio();
+        },
+        { once: true }
+      );
+    }
+
+    // Delay Matrix initialization to avoid blocking main thread
     setTimeout(() => {
-      // 动态导入Matrix模块避免阻塞主线程
+      // Dynamic import Matrix module to avoid blocking main thread
       import("./matrix.js")
         .then((module) => {
           const { MatrixRain } = module;
           window.matrixRain = new MatrixRain();
         })
         .catch((error) => {
-          console.warn("Matrix模块加载失败:", error);
+          console.warn("Matrix module loading failed:", error);
         });
     }, 500);
   }
 
+  initializeNewFeatures() {
+    this.initParticleSystem();
+    this.initMusicVisualizer();
+    this.setupParticleControls();
+    this.setupVisualizerControls();
+    this.setupNewFeatureInteractions();
+  }
+
+  initParticleSystem() {
+    const canvas = document.getElementById("particle-canvas");
+    if (canvas) {
+      this.particleSystem = new ParticleSystem(canvas);
+      console.log("Particle system initialized");
+    }
+  }
+
+  initMusicVisualizer() {
+    const canvas = document.getElementById("visualizer-canvas");
+    if (canvas) {
+      this.musicVisualizer = new MusicVisualizer(canvas);
+      console.log("Music visualizer initialized");
+    }
+  }
+
+  setupParticleControls() {
+    const toggleBtn = document.getElementById("particle-toggle");
+    const particleCount = document.getElementById("particle-count");
+    const particleFps = document.getElementById("particle-fps");
+
+    if (toggleBtn && this.particleSystem) {
+      toggleBtn.addEventListener("click", () => {
+        this.particleSystem.toggle();
+
+        if (this.particleSystem.isActive) {
+          toggleBtn.innerHTML = '<i class="fas fa-stop"></i> Stop Particles';
+          toggleBtn.classList.add("active");
+        } else {
+          toggleBtn.innerHTML = '<i class="fas fa-play"></i> Start Particles';
+          toggleBtn.classList.remove("active");
+        }
+      });
+
+      // Update particle stats
+      setInterval(() => {
+        if (particleCount) {
+          particleCount.textContent = this.particleSystem.particles.length;
+        }
+        if (particleFps) {
+          particleFps.textContent = "60"; // Simplified FPS display
+        }
+      }, 100);
+    }
+  }
+
+  setupVisualizerControls() {
+    const startBtn = document.getElementById("visualizer-start");
+    const demoBtn = document.getElementById("visualizer-demo");
+    const stopBtn = document.getElementById("visualizer-stop");
+
+    if (this.musicVisualizer) {
+      if (startBtn) {
+        startBtn.addEventListener("click", async () => {
+          await this.musicVisualizer.startMicrophone();
+        });
+      }
+
+      if (demoBtn) {
+        demoBtn.addEventListener("click", () => {
+          this.musicVisualizer.startSimulation();
+        });
+      }
+
+      if (stopBtn) {
+        stopBtn.addEventListener("click", () => {
+          this.musicVisualizer.stop();
+        });
+      }
+    }
+  }
+
+  setupNewFeatureInteractions() {
+    // Particle system interactions with other features
+    if (this.particleSystem && this.musicVisualizer) {
+      // Create particles when music peaks
+      this.musicVisualizer.onBeat = (intensity) => {
+        if (this.particleSystem.isActive && intensity > 0.8) {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight;
+          this.particleSystem.createExplosion(x, y);
+        }
+      };
+    }
+  }
+
   setupPageLoad() {
-    // 页面加载动画
-    const body = document.querySelector("body");
-    body.classList.add("loaded");
+    // Remove loading class after page loads
+    window.addEventListener("load", () => {
+      document.body.classList.remove("crt-boot");
+      document.body.classList.add("loaded");
+
+      // Initialize typing effect
+      this.initTypingEffect();
+    });
+  }
+
+  initTypingEffect() {
+    const typedTextElement = document.getElementById("typed-text");
+    if (!typedTextElement) return;
+
+    const texts = [
+      "Welcome to my cyberpunk world",
+      "Beginner web developer",
+      "Learning and growing every day",
+      "Building the future with code",
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentText = texts[textIndex];
+
+      if (isDeleting) {
+        typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let typeSpeed = isDeleting ? 50 : 100;
+
+      if (!isDeleting && charIndex === currentText.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        typeSpeed = 500;
+      }
+
+      setTimeout(type, typeSpeed);
+    }
+
+    type();
   }
 }
 
-// 创建应用实例
-const app = new App();
-
-// 导出应用实例供调试使用
-window.app = app;
+// Initialize application
+new App();
