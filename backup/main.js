@@ -290,7 +290,7 @@ class MatrixRain {
 
     // 字符集
     this.characters =
-      "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?`~!§±∞÷≠≤≥∑∏∫∆√∝∀∃∂∇∪∩⊂⊃⊆⊇∧∨¬⊥∥∠∴∵∝∞";
 
     this.init();
   }

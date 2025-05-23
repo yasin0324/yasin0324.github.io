@@ -1,160 +1,176 @@
 <!DOCTYPE html>
 <html lang="zh">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>yasin</title>
-        <link rel="stylesheet" href="./css/style.css" />
-        <!-- 谷歌字体: Orbitron 和 Share Tech Mono -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap"
-            rel="stylesheet"
-        />
-        <!-- 字体图标 -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        />
-    </head>
-    <body>
-        <!-- 噪点背景效果 -->
-        <div class="noise"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>yasin</title>
+    <!-- 使用新的CSS结构 -->
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <!-- 字体图标 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- 噪点背景效果 -->
+    <div class="noise"></div>
 
-        <!-- 导航栏 -->
-        <nav class="navbar">
-            <div class="glitch-container">
-                <h1 class="glitch" data-text="Yasin">Yasin</h1>
-                <div class="nav-icons">
-                    <a
-                        href="https://github.com/yasin0324"
-                        target="_blank"
-                        class="nav-icon"
-                        ><i class="fab fa-github"></i
-                    ></a>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="neon-link">Home</a>
-                <a href="#about" class="neon-link">About</a>
-                <a href="#projects" class="neon-link">Projects</a>
-            </div>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="glitch-container">
+        <h1 class="glitch" data-text="Yasin">Yasin</h1>
+        <div class="nav-icons">
+          <a
+            href="https://github.com/yasin0324"
+            target="_blank"
+            class="nav-icon"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#home" class="neon-link">Home</a>
+        <a href="#about" class="neon-link">About</a>
+        <a href="#matrix" class="neon-link">Matrix</a>
+      </div>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </nav>
 
-        <!-- 英雄区 -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="cyber-title glitch" data-text="yasin">yasin</h1>
-                <p class="cyber-subtitle">
-                    // <span id="typed-text"></span
-                    ><span class="cursor">_</span>
-                </p>
-                <div class="cta-buttons">
-                    <a href="#about" class="neon-button alt">About me</a>
-                    <a href="#projects" class="neon-button">Projects</a>
-                </div>
-            </div>
-            <div class="scanner-line"></div>
-        </section>
+    <!-- 英雄区 -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1 class="glitch" data-text="yasin">yasin</h1>
+        <p class="hero-subtitle">
+          // <span id="typed-text"></span><span class="cursor">_</span>
+        </p>
+        <div class="cta-buttons">
+          <a href="#about" class="cta-button">About me</a>
+          <a href="#matrix" class="cta-button">Enter Matrix</a>
+        </div>
+      </div>
+      <div class="scanner-line"></div>
+    </section>
 
-        <!-- 关于我 -->
-        <section id="about" class="about-section">
-            <div class="section-header">
-                <h2 class="cyber-heading">
-                    About me<span class="accent">.</span>
-                </h2>
-                <div class="section-line"></div>
+    <!-- 关于我 -->
+    <section id="about" class="about">
+      <div class="section-header">
+        <h2 class="cyber-heading">About me<span class="accent">.</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-content">
+        <div class="profile-card">
+          <img
+            src="./assets/images/WechatIMG4.jpg"
+            alt="MY_IMAGE"
+            class="profile-image"
+          />
+          <div class="profile-details">
+            <h3 class="neon-text">Yasin</h3>
+            <p class="profile-title">Beginner Web Developer (learning)</p>
+            <div class="social-icons">
+              <a href="https://github.com/yasin0324" class="social-icon"
+                ><i class="fab fa-github"></i
+              ></a>
             </div>
-            <div class="about-content">
-                <div class="profile-container">
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img
-                                src="./image/WechatIMG4.jpg"
-                                alt="MY_IMAGE"
-                                class="profile-placeholder"
-                            />
-                        </div>
-                        <div class="profile-details">
-                            <h3 class="neon-text">Yasin</h3>
-                            <p class="profile-title">
-                                Front-end Developer (learning)
-                            </p>
-                            <div class="social-icons">
-                                <a
-                                    href="https://github.com/yasin0324"
-                                    class="social-icon"
-                                    ><i class="fab fa-github"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="terminal-container">
-                    <div class="terminal-header">
-                        <span class="terminal-button"></span>
-                        <span class="terminal-button"></span>
-                        <span class="terminal-button"></span>
-                        <span class="terminal-title">My.exe</span>
-                    </div>
-                    <div class="terminal-body">
-                        <p>
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-text">cat about_me.txt</span>
-                        </p>
-                        <p class="terminal-output">
-                            A beginner Front-End Developer from China.
-                        </p>
-                        <p>
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-text">ls skills/</span>
-                        </p>
-                        <p class="terminal-output">
-                            HTML CSS JavaScript Vue React ...
-                        </p>
-                        <p>
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-text">cat hobbies.txt</span>
-                        </p>
-                        <p class="terminal-output">
-                            Game | Coding | Travel | Music | Movie | Anime ...
-                        </p>
-                        <p class="terminal-output terminal-art">
-                            ┌───────────────────────┐
-                            │  Welcome to My        │
-                            │  Personal Website!    │
-                            └───────────────────────┘
-                               ╱|、
-                              (˚ˎ。7  
-                              |、˜〵        
-                              |  しし⌒) 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+        <div class="terminal-container">
+          <div class="terminal-header">
+            <div class="terminal-btn close"></div>
+            <div class="terminal-btn minimize"></div>
+            <div class="terminal-btn maximize"></div>
+          </div>
+          <div class="terminal-body">
+            <p class="terminal-text">$ cat about_me.txt</p>
+            <p class="terminal-text">
+              A beginner Front-End Developer from China.
+            </p>
+            <p class="terminal-text">$ ls skills/</p>
+            <p class="terminal-text">HTML CSS JavaScript Vue React ...</p>
+            <p class="terminal-text">$ cat hobbies.txt</p>
+            <p class="terminal-text">
+              Game | Coding | Travel | Music | Movie | Anime ...
+            </p>
+            <p class="terminal-text">
+              ┌───────────────────────┐ │ Welcome to My │ │ Personal Website! │
+              └───────────────────────┘ ╱|、 (˚ˎ。7 |、˜〵 | しし⌒)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- 项目展示 -->
-        <section id="projects" class="projects-section">
-            <div class="section-header">
-                <h2 class="cyber-heading">
-                    Projects<span class="accent">.</span>
-                </h2>
-                <div class="section-line"></div>
+    <!-- Matrix数字雨区 -->
+    <section id="matrix" class="matrix">
+      <div class="section-header">
+        <h2 class="cyber-heading">
+          Enter The Matrix<span class="accent">.</span>
+        </h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="matrix-container">
+        <div class="matrix-canvas-wrapper">
+          <canvas id="matrix-canvas"></canvas>
+        </div>
+        <div class="matrix-controls">
+          <h3>Digital Rain Controller</h3>
+          <div class="control-group">
+            <button id="matrix-toggle" class="control-button">
+              <i class="fas fa-play"></i> Start Matrix
+            </button>
+            <button id="matrix-reset" class="control-button">
+              <i class="fas fa-refresh"></i> Reset
+            </button>
+          </div>
+          <div class="control-group">
+            <label>Speed:</label>
+            <input
+              type="range"
+              id="speed-control"
+              min="1"
+              max="10"
+              value="5"
+              class="control-slider"
+            />
+          </div>
+          <div class="control-group">
+            <label>Density:</label>
+            <input
+              type="range"
+              id="density-control"
+              min="1"
+              max="20"
+              value="10"
+              class="control-slider"
+            />
+          </div>
+          <div class="stats-display">
+            <div class="stat-item">
+              <span class="stat-value" id="stream-count">0</span>
+              <span class="stat-label">Streams</span>
             </div>
-        </section>
-
-        <!-- 页脚 -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p>© 2025 Yasin</p>
+            <div class="stat-item">
+              <span class="stat-value" id="fps-counter">0</span>
+              <span class="stat-label">FPS</span>
             </div>
-        </footer>
+          </div>
+          <div class="matrix-instructions">
+            <p>
+              <i class="fas fa-mouse-pointer"></i> Click to create explosions
+            </p>
+            <p><i class="fas fa-keyboard"></i> Press SPACE to pause/resume</p>
+            <p><i class="fas fa-arrows-alt"></i> Move mouse to interact</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <script src="./js/main.js"></script>
-    </body>
+    <!-- 使用新的JavaScript结构 -->
+    <script type="module" src="./src/scripts/app.js"></script>
+  </body>
 </html>

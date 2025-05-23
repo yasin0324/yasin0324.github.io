@@ -1,0 +1,105 @@
+/* 导航栏组件 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: rgba(7, 1, 19, 0.8);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: var(--z-navbar);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.glitch-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.nav-icons {
+  margin-top: 0.3rem;
+}
+
+.nav-icon {
+  font-size: 1.7rem;
+  color: var(--text-color);
+  transition: all var(--transition-normal) ease;
+}
+
+.nav-icon:hover {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.navbar h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: var(--font-heading);
+  position: relative;
+  transition: all var(--transition-normal) ease;
+}
+
+.neon-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--neon-blue);
+  transition: width var(--transition-normal) ease;
+  box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.neon-link:hover {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.neon-link:hover::after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 2px;
+  background-color: var(--text-color);
+  margin: 5px 0;
+  transition: all var(--transition-normal) ease;
+}
+
+/* 汉堡菜单动画 */
+.hamburger .line.rotate-down {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger .line.hide {
+  opacity: 0;
+}
+
+.hamburger .line.rotate-up {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
