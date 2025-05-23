@@ -18,6 +18,7 @@ import "./matrix.js";
 // Import new feature modules
 import ParticleSystem from "./particle-system.js";
 import MusicVisualizer from "./music-visualizer.js";
+import TerminalSimulator from "./terminal-simulator.js";
 
 /**
  * Navigation component class
@@ -180,6 +181,7 @@ class App {
     this.matrixRain = null;
     this.particleSystem = null;
     this.musicVisualizer = null;
+    this.terminalSimulator = null;
 
     this.init();
   }
@@ -241,8 +243,10 @@ class App {
   initializeNewFeatures() {
     this.initParticleSystem();
     this.initMusicVisualizer();
+    this.initTerminalSimulator();
     this.setupParticleControls();
     this.setupVisualizerControls();
+    this.setupTerminalControls();
     this.setupNewFeatureInteractions();
   }
 
@@ -259,6 +263,16 @@ class App {
     if (canvas) {
       this.musicVisualizer = new MusicVisualizer(canvas);
       console.log("Music visualizer initialized");
+    }
+  }
+
+  initTerminalSimulator() {
+    const container = document.getElementById("terminal-simulator-container");
+    if (container) {
+      this.terminalSimulator = new TerminalSimulator(container);
+      // 将引用添加到全局，以便终端命令可以访问其他系统
+      window.terminalSimulator = this.terminalSimulator;
+      console.log("Terminal simulator initialized");
     }
   }
 
@@ -315,6 +329,29 @@ class App {
           this.musicVisualizer.stop();
         });
       }
+    }
+  }
+
+  setupTerminalControls() {
+    // 终端模拟器不需要外部控制按钮，因为它是完全交互式的
+    // 但我们可以设置键盘快捷键
+    if (this.terminalSimulator) {
+      document.addEventListener("keydown", (e) => {
+        // Ctrl+Alt+T 聚焦到终端
+        if (e.ctrlKey && e.altKey && e.key === "t") {
+          e.preventDefault();
+          const input = document.getElementById("terminal-input");
+          if (input) {
+            input.focus();
+            // 滚动到终端
+            document
+              .getElementById("terminal-simulator-container")
+              ?.scrollIntoView({
+                behavior: "smooth",
+              });
+          }
+        }
+      });
     }
   }
 

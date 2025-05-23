@@ -9,6 +9,12 @@
 @import url("./pixel-retro.css");
 @import url("./pixel-decorations.css");
 @import url("./ascii-art.css");
+@import url("./effects.css");
+@import url("./components.css");
+@import url("./responsive.css");
+@import url("./particle-system.css");
+@import url("./music-visualizer.css");
+@import url("./terminal-simulator.css");
 
 /* 2. 组件样式 */
 @import url("../components/navbar.css");

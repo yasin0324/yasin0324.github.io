@@ -1,0 +1,94 @@
+/* 终端指令样式 */
+.terminal-instructions {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--pixel-green);
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+}
+
+.terminal-instructions h4 {
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px var(--pixel-green);
+}
+
+.instructions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.instruction-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.instruction-group p {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: var(--pixel-cyan);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 0 5px rgba(116, 192, 252, 0.5);
+}
+
+.instruction-group code {
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid var(--pixel-green);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  text-shadow: 0 0 5px var(--pixel-green);
+}
+
+.pixel-text.highlight {
+  color: var(--pixel-yellow) !important;
+  text-shadow: 0 0 8px var(--pixel-yellow) !important;
+  font-weight: bold;
+  border-left: 3px solid var(--pixel-yellow);
+  padding-left: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+/* 响应式网格 */
+@media (max-width: 768px) {
+  .instructions-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .instruction-group p {
+    font-size: 0.8rem;
+  }
+
+  .instruction-group code {
+    font-size: 0.75rem;
+  }
+
+  .terminal-instructions {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* 交互元素悬停效果 */
+.instruction-group p:hover {
+  color: var(--pixel-green);
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+.instruction-group code:hover {
+  background: rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
