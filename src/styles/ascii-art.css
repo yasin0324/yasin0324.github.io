@@ -1,0 +1,241 @@
+/**
+ * ASCII艺术字符画样式
+ * 确保字符画结构完整显示
+ */
+
+/* ASCII艺术容器 */
+.ascii-art {
+  font-family: "Courier New", "Lucida Console", "Monaco", "Consolas", monospace;
+  white-space: pre;
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-size: 13px;
+  color: var(--pixel-green);
+  text-align: left;
+  overflow-x: auto;
+  background: var(--dark-bg);
+  padding: var(--spacing-md);
+  border: 2px solid var(--pixel-green);
+  margin: var(--spacing-sm) 0;
+  position: relative;
+  font-weight: normal;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: geometricPrecision;
+}
+
+/* 像素风格的ASCII艺术 */
+.ascii-art.pixel-style {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: var(--pixel-cyan);
+  text-shadow: 1px 0 0 var(--pixel-cyan), 0 1px 0 var(--pixel-cyan),
+    -1px 0 0 var(--pixel-cyan), 0 -1px 0 var(--pixel-cyan);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-cyan);
+  padding: var(--spacing-md);
+}
+
+/* 经典终端风格 */
+.ascii-art.terminal-style {
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-size: 13px;
+  color: var(--pixel-green);
+  background: #000000;
+  border: 2px solid var(--pixel-green);
+  padding: var(--spacing-md);
+  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1),
+    0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+/* 彩色ASCII艺术 */
+.ascii-art.colorful {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-magenta);
+  padding: var(--spacing-md);
+}
+
+/* ASCII艺术中的特殊字符颜色 */
+.ascii-art .ascii-border {
+  color: var(--pixel-yellow);
+  font-weight: bold;
+}
+
+.ascii-art .ascii-text {
+  color: var(--pixel-cyan);
+  font-weight: normal;
+}
+
+.ascii-art .ascii-character {
+  color: var(--pixel-magenta);
+  font-weight: normal;
+}
+
+.ascii-art .ascii-decoration {
+  color: var(--pixel-orange);
+}
+
+/* 确保字符不被选择时变形 */
+.ascii-art::selection {
+  background: rgba(0, 255, 65, 0.3);
+  color: inherit;
+}
+
+.ascii-art::-moz-selection {
+  background: rgba(0, 255, 65, 0.3);
+  color: inherit;
+}
+
+/* 滚动条样式（如果内容过宽） */
+.ascii-art::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ascii-art::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+  border: 1px solid var(--pixel-green);
+}
+
+.ascii-art::-webkit-scrollbar-thumb {
+  background: var(--pixel-green);
+  border: 1px solid var(--dark-bg);
+}
+
+/* 动画效果（可选） */
+.ascii-art.animated {
+  animation: asciiGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes asciiGlow {
+  0% {
+    box-shadow: 0 0 5px var(--pixel-green), inset 0 0 5px rgba(0, 255, 65, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--pixel-green),
+      inset 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+}
+
+/* 打字机效果容器 */
+.ascii-typewriter {
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  overflow: hidden;
+  border-right: 2px solid var(--pixel-green);
+  animation: typewriter 3s steps(40, end), blink-cursor 0.8s infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-cursor {
+  0%,
+  50% {
+    border-color: var(--pixel-green);
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .ascii-art {
+    font-size: 11px;
+    padding: var(--spacing-sm);
+    line-height: 1;
+  }
+
+  .ascii-art.pixel-style {
+    font-size: 10px;
+  }
+
+  .ascii-art.terminal-style {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ascii-art {
+    font-size: 10px;
+    overflow-x: scroll;
+    padding: var(--spacing-xs);
+    line-height: 0.9;
+  }
+
+  .ascii-art.pixel-style {
+    font-size: 9px;
+  }
+}
+
+/* 确保在不同浏览器中的一致性 */
+.ascii-art {
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* 防止字体回退导致的显示问题 */
+@font-face {
+  font-family: "ASCII-Safe";
+  src: local("Courier New"), local("Monaco"), local("Consolas");
+  font-display: block;
+}
+
+.ascii-art.safe-font {
+  font-family: "ASCII-Safe", monospace;
+}
+
+/* 移动端优化 */
+.ascii-art.mobile-optimized {
+  font-size: 9px;
+  padding: var(--spacing-xs);
+  overflow-x: auto;
+  white-space: pre;
+  word-break: keep-all;
+}
+
+/* 悬停状态增强 */
+.ascii-art.ascii-hover {
+  box-shadow: 0 0 15px var(--pixel-cyan), inset 0 0 15px rgba(0, 212, 170, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+/* 交互状态样式 */
+.ascii-art:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px var(--pixel-green), inset 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* 确保在所有设备上的一致显示 */
+.ascii-art * {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: inherit;
+}
+
+/* 防止文本被意外换行 */
+.ascii-art {
+  word-wrap: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+/* 提升清晰度 */
+.ascii-art {
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}

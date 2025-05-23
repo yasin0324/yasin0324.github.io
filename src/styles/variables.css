@@ -1,23 +1,36 @@
 /* CSS 变量定义 */
 :root {
-  /* 霓虹灯颜色 */
-  --neon-pink: #ff2a6d;
-  --neon-blue: #05d9e8;
-  --neon-purple: #b967ff;
-  --neon-green: #39ff14;
+  /* 复古像素颜色方案 */
+  --pixel-green: #00ff41;
+  --pixel-cyan: #00d4aa;
+  --pixel-magenta: #ff0090;
+  --pixel-yellow: #ffff00;
+  --pixel-orange: #ff8000;
+  --pixel-red: #ff3030;
+  --pixel-blue: #0080ff;
 
-  /* 背景颜色 */
-  --dark-bg: #0d0221;
-  --darker-bg: #070113;
-  --dark-accent: #1a1025;
+  /* 霓虹灯颜色 - 调整为更像素化 */
+  --neon-pink: #ff0090;
+  --neon-blue: #0080ff;
+  --neon-purple: #8000ff;
+  --neon-green: #00ff41;
+
+  /* 背景颜色 - 更深邃的复古感 */
+  --dark-bg: #000000;
+  --darker-bg: #0a0a0a;
+  --dark-accent: #1a1a1a;
+  --crt-bg: #001100;
 
   /* 文字颜色 */
-  --text-color: #ffffff;
-  --secondary-text: #b3b3b3;
+  --text-color: #00ff41;
+  --secondary-text: #00d4aa;
+  --terminal-text: #00ff41;
 
-  /* 字体 */
-  --font-primary: "Share Tech Mono", monospace;
-  --font-heading: "Orbitron", sans-serif;
+  /* 复古像素字体 */
+  --font-pixel: "Courier New", "Perfect DOS VGA 437", "Press Start 2P",
+    monospace;
+  --font-primary: "Share Tech Mono", "Courier New", monospace;
+  --font-heading: "Orbitron", "Share Tech Mono", monospace;
 
   /* 间距 */
   --spacing-xs: 0.5rem;
@@ -26,25 +39,34 @@
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
 
-  /* 边框半径 */
-  --border-radius-sm: 5px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 10px;
+  /* 边框半径 - 像素化效果 */
+  --border-radius-sm: 0px;
+  --border-radius-md: 2px;
+  --border-radius-lg: 3px;
+  --pixel-border: 1px;
 
-  /* 阴影 */
-  --shadow-neon-pink: 0 0 20px rgba(255, 42, 109, 0.2);
-  --shadow-neon-blue: 0 0 20px rgba(5, 217, 232, 0.2);
-  --shadow-neon-purple: 0 0 20px rgba(185, 103, 255, 0.2);
-  --shadow-neon-green: 0 0 20px rgba(57, 255, 20, 0.2);
+  /* 像素化阴影 */
+  --shadow-pixel-green: 0 0 0 1px #00ff41, 0 0 0 2px #004411;
+  --shadow-pixel-cyan: 0 0 0 1px #00d4aa, 0 0 0 2px #003333;
+  --shadow-pixel-magenta: 0 0 0 1px #ff0090, 0 0 0 2px #440022;
+  --shadow-neon-pink: 0 0 10px rgba(255, 0, 144, 0.8);
+  --shadow-neon-blue: 0 0 10px rgba(0, 128, 255, 0.8);
+  --shadow-neon-purple: 0 0 10px rgba(128, 0, 255, 0.8);
+  --shadow-neon-green: 0 0 10px rgba(0, 255, 65, 0.8);
 
   /* 动画时长 */
-  --transition-fast: 0.2s;
-  --transition-normal: 0.3s;
-  --transition-slow: 0.5s;
+  --transition-fast: 0.1s;
+  --transition-normal: 0.2s;
+  --transition-slow: 0.3s;
 
   /* Z-index层级 */
   --z-background: -1;
   --z-content: 1;
   --z-modal: 100;
   --z-navbar: 1000;
+
+  /* CRT效果参数 */
+  --crt-scanline-opacity: 0.04;
+  --crt-curve: 2px;
+  --crt-noise-opacity: 0.15;
 }

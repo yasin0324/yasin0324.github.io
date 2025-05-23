@@ -12,27 +12,35 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
-  <body>
+  <body class="crt-boot">
     <!-- 噪点背景效果 -->
     <div class="noise"></div>
 
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar pixel-nav">
       <div class="glitch-container">
         <h1 class="glitch" data-text="Yasin">Yasin</h1>
         <div class="nav-icons">
+          <!-- 声音控制按钮 -->
+          <button
+            id="sound-toggle"
+            class="nav-icon pixel-button sound-btn"
+            title="Toggle 8-bit Sounds"
+          >
+            <i class="fas fa-volume-up" id="sound-icon"></i>
+          </button>
           <a
             href="https://github.com/yasin0324"
             target="_blank"
-            class="nav-icon"
+            class="nav-icon pixel-button"
             ><i class="fab fa-github"></i
           ></a>
         </div>
       </div>
       <div class="nav-links">
-        <a href="#home" class="neon-link">Home</a>
-        <a href="#about" class="neon-link">About</a>
-        <a href="#matrix" class="neon-link">Matrix</a>
+        <a href="#home" class="neon-link pixel-text">Home</a>
+        <a href="#about" class="neon-link pixel-text">About</a>
+        <a href="#matrix" class="neon-link pixel-text">Matrix</a>
       </div>
       <div class="hamburger">
         <div class="line"></div>
@@ -44,13 +52,14 @@
     <!-- 英雄区 -->
     <section id="home" class="hero">
       <div class="hero-content">
-        <h1 class="glitch" data-text="yasin">yasin</h1>
-        <p class="hero-subtitle">
-          // <span id="typed-text"></span><span class="cursor">_</span>
+        <h1 class="glitch pixel-text" data-text="yasin">yasin</h1>
+        <p class="hero-subtitle pixel-text">
+          // <span id="typed-text"></span
+          ><span class="cursor blink-text">_</span>
         </p>
         <div class="cta-buttons">
-          <a href="#about" class="cta-button">About me</a>
-          <a href="#matrix" class="cta-button">Enter Matrix</a>
+          <a href="#about" class="cta-button pixel-button">About me</a>
+          <a href="#matrix" class="cta-button pixel-button">Enter Matrix</a>
         </div>
       </div>
       <div class="scanner-line"></div>
@@ -61,45 +70,63 @@
       <div class="section-header">
         <h2 class="cyber-heading">About me<span class="accent">.</span></h2>
         <div class="section-line"></div>
+        <div class="pixel-divider"></div>
       </div>
       <div class="about-content">
-        <div class="profile-card">
+        <div class="profile-card pixel-border pixel-corner-decoration">
           <img
             src="./assets/images/WechatIMG4.jpg"
             alt="MY_IMAGE"
-            class="profile-image"
+            class="profile-image pixel-image"
           />
           <div class="profile-details">
-            <h3 class="neon-text">Yasin</h3>
-            <p class="profile-title">Beginner Web Developer (learning)</p>
+            <h3 class="neon-text pixel-text">
+              Yasin <span class="retro-badge">DEV</span>
+            </h3>
+            <p class="profile-title pixel-text">
+              Beginner Web Developer (learning)
+            </p>
             <div class="social-icons">
-              <a href="https://github.com/yasin0324" class="social-icon"
+              <a
+                href="https://github.com/yasin0324"
+                class="social-icon arcade-button"
                 ><i class="fab fa-github"></i
               ></a>
             </div>
           </div>
         </div>
-        <div class="terminal-container">
+        <div class="terminal-container pixel-terminal pixel-corner-decoration">
           <div class="terminal-header">
             <div class="terminal-btn close"></div>
             <div class="terminal-btn minimize"></div>
             <div class="terminal-btn maximize"></div>
           </div>
           <div class="terminal-body">
-            <p class="terminal-text">$ cat about_me.txt</p>
-            <p class="terminal-text">
+            <p class="terminal-text pixel-text">$ cat about_me.txt</p>
+            <p class="terminal-text pixel-text">
               A beginner Front-End Developer from China.
             </p>
-            <p class="terminal-text">$ ls skills/</p>
-            <p class="terminal-text">HTML CSS JavaScript Vue React ...</p>
-            <p class="terminal-text">$ cat hobbies.txt</p>
-            <p class="terminal-text">
-              Game | Coding | Travel | Music | Movie | Anime ...
+            <p class="terminal-text pixel-text">$ ls skills/</p>
+            <p class="terminal-text pixel-text">
+              HTML CSS JavaScript Vue React ...
             </p>
-            <p class="terminal-text">
-              ┌───────────────────────┐ │ Welcome to My │ │ Personal Website! │
-              └───────────────────────┘ ╱|、 (˚ˎ。7 |、˜〵 | しし⌒)
+            <p class="terminal-text pixel-text">$ cat hobbies.txt</p>
+            <p class="terminal-text pixel-text">
+              Game <span class="pixel-icon-heart"></span> | Coding
+              <span class="pixel-icon-star"></span> | Travel
+              <span class="pixel-icon-diamond"></span> | Music | Movie | Anime
+              ...
             </p>
+            <div class="ascii-art pixel-style animated">
+              <span class="ascii-border">┌───────────────────────┐</span>
+              <span class="ascii-text">|Welcome to My          |</span>
+              <span class="ascii-text">|Personal Website!      |</span>
+              <span class="ascii-border">└───────────────────────┘</span>
+              <span class="ascii-character">/|\</span>
+              <span class="ascii-character">(˚ˎ。7</span>
+              <span class="ascii-character">|、˜〵</span>
+              <span class="ascii-character">| しし⌒)</span>
+            </div>
           </div>
         </div>
       </div>
@@ -112,23 +139,29 @@
           Enter The Matrix<span class="accent">.</span>
         </h2>
         <div class="section-line"></div>
+        <div class="pixel-divider"></div>
       </div>
       <div class="matrix-container">
-        <div class="matrix-canvas-wrapper">
+        <div class="matrix-canvas-wrapper pixel-border pixel-corner-decoration">
           <canvas id="matrix-canvas"></canvas>
         </div>
         <div class="matrix-controls">
-          <h3>Digital Rain Controller</h3>
+          <h3 class="pixel-text">
+            Digital Rain Controller <span class="retro-badge">V2.0</span>
+          </h3>
           <div class="control-group">
-            <button id="matrix-toggle" class="control-button">
+            <button id="matrix-toggle" class="control-button arcade-button">
               <i class="fas fa-play"></i> Start Matrix
             </button>
-            <button id="matrix-reset" class="control-button">
+            <button id="matrix-reset" class="control-button arcade-button">
               <i class="fas fa-refresh"></i> Reset
             </button>
           </div>
           <div class="control-group">
-            <label>Speed:</label>
+            <label class="pixel-text">Speed:</label>
+            <div class="pixel-progress">
+              <div class="pixel-progress-fill" style="width: 50%"></div>
+            </div>
             <input
               type="range"
               id="speed-control"
@@ -139,7 +172,13 @@
             />
           </div>
           <div class="control-group">
-            <label>Density:</label>
+            <label class="pixel-text">Density:</label>
+            <div class="pixel-progress">
+              <div
+                class="pixel-progress-fill animated"
+                style="width: 60%"
+              ></div>
+            </div>
             <input
               type="range"
               id="density-control"
@@ -149,22 +188,26 @@
               class="control-slider"
             />
           </div>
-          <div class="stats-display">
+          <div class="stats-display retro-scoreboard">
             <div class="stat-item">
-              <span class="stat-value" id="stream-count">0</span>
-              <span class="stat-label">Streams</span>
+              <span class="stat-value pixel-text" id="stream-count">0</span>
+              <span class="stat-label pixel-text">Streams</span>
             </div>
             <div class="stat-item">
-              <span class="stat-value" id="fps-counter">0</span>
-              <span class="stat-label">FPS</span>
+              <span class="stat-value pixel-text" id="fps-counter">0</span>
+              <span class="stat-label pixel-text">FPS</span>
             </div>
           </div>
           <div class="matrix-instructions">
-            <p>
+            <p class="pixel-text">
               <i class="fas fa-mouse-pointer"></i> Click to create explosions
             </p>
-            <p><i class="fas fa-keyboard"></i> Press SPACE to pause/resume</p>
-            <p><i class="fas fa-arrows-alt"></i> Move mouse to interact</p>
+            <p class="pixel-text">
+              <i class="fas fa-keyboard"></i> Press SPACE to pause/resume
+            </p>
+            <p class="pixel-text">
+              <i class="fas fa-arrows-alt"></i> Move mouse to interact
+            </p>
           </div>
         </div>
       </div>

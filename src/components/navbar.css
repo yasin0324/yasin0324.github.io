@@ -1,17 +1,17 @@
-/* 导航栏组件 */
+/* 导航栏组件 - 像素风格 */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: rgba(7, 1, 19, 0.8);
+  background-color: var(--dark-bg);
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: var(--z-navbar);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 42, 109, 0.3);
+  border-bottom: 3px solid var(--pixel-green);
+  font-family: var(--font-pixel);
 }
 
 .glitch-container {
@@ -25,57 +25,59 @@
 }
 
 .nav-icon {
-  font-size: 1.7rem;
-  color: var(--text-color);
-  transition: all var(--transition-normal) ease;
+  font-size: 1.4rem;
+  color: var(--pixel-cyan);
+  transition: none;
+  padding: 4px 8px;
+  border: 2px solid var(--pixel-cyan);
+  text-decoration: none;
 }
 
 .nav-icon:hover {
-  color: var(--neon-blue);
-  text-shadow: 0 0 10px var(--neon-blue);
+  color: var(--dark-bg);
+  background: var(--pixel-cyan);
+  box-shadow: var(--shadow-pixel-cyan);
 }
 
 .navbar h1 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--text-color);
+  font-family: var(--font-pixel);
+  font-weight: normal;
+  font-size: 1.5rem;
+  color: var(--pixel-green);
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 0 0 var(--pixel-green), 0 1px 0 var(--pixel-green),
+    -1px 0 0 var(--pixel-green), 0 -1px 0 var(--pixel-green);
 }
 
 .nav-links {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .nav-links a {
-  color: var(--text-color);
+  color: var(--pixel-cyan);
   text-decoration: none;
-  font-size: 1rem;
-  font-family: var(--font-heading);
+  font-size: 14px;
+  font-family: var(--font-pixel);
   position: relative;
-  transition: all var(--transition-normal) ease;
+  transition: none;
+  padding: 6px 12px;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .neon-link::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--neon-blue);
-  transition: width var(--transition-normal) ease;
-  box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  display: none;
 }
 
 .neon-link:hover {
-  color: var(--neon-blue);
-  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
-}
-
-.neon-link:hover::after {
-  width: 100%;
+  color: var(--dark-bg);
+  background: var(--pixel-cyan);
+  border: 2px solid var(--pixel-cyan);
+  box-shadow: var(--shadow-pixel-cyan);
 }
 
 .hamburger {
@@ -85,15 +87,16 @@
 
 .hamburger .line {
   width: 25px;
-  height: 2px;
-  background-color: var(--text-color);
-  margin: 5px 0;
-  transition: all var(--transition-normal) ease;
+  height: 3px;
+  background-color: var(--pixel-green);
+  margin: 4px 0;
+  transition: none;
 }
 
-/* 汉堡菜单动画 */
+/* 汉堡菜单动画 - 像素风格 */
 .hamburger .line.rotate-down {
   transform: rotate(-45deg) translate(-5px, 6px);
+  background-color: var(--pixel-red);
 }
 
 .hamburger .line.hide {
@@ -102,4 +105,133 @@
 
 .hamburger .line.rotate-up {
   transform: rotate(45deg) translate(-5px, -6px);
+  background-color: var(--pixel-red);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: var(--dark-bg);
+    border-top: 2px solid var(--pixel-green);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: var(--spacing-xl);
+    transition: left 0.3s ease;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-links a {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 16px;
+    width: 200px;
+    text-align: center;
+    margin: var(--spacing-xs) 0;
+    border: 2px solid var(--pixel-cyan);
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* 声音控制按钮 */
+.sound-btn {
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  color: var(--pixel-green);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  margin-right: var(--spacing-sm);
+  font-size: 1.4rem;
+  padding: 4px 8px;
+}
+
+.sound-btn:hover {
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  box-shadow: var(--shadow-pixel-green);
+}
+
+.sound-btn.muted {
+  border-color: var(--pixel-red);
+  color: var(--pixel-red);
+}
+
+.sound-btn.muted:hover {
+  background: var(--pixel-red);
+  color: var(--dark-bg);
+  box-shadow: var(--shadow-pixel-red);
+}
+
+/* 声音按钮状态动画 */
+.sound-btn.active {
+  animation: soundPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes soundPulse {
+  0% {
+    box-shadow: 0 0 5px var(--pixel-green);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--pixel-green), 0 0 25px var(--pixel-green);
+  }
+}
+
+.sound-btn.muted.active {
+  animation: soundMutedPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes soundMutedPulse {
+  0% {
+    box-shadow: 0 0 5px var(--pixel-red);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--pixel-red), 0 0 25px var(--pixel-red);
+  }
+}
+
+/* 声音波形效果 */
+.sound-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    var(--pixel-green) 30%,
+    var(--pixel-green) 70%,
+    transparent 70%
+  );
+  background-size: 4px 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+
+.sound-btn:hover::before {
+  opacity: 0.3;
+}
+
+.sound-btn.muted::before {
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    var(--pixel-red) 30%,
+    var(--pixel-red) 70%,
+    transparent 70%
+  );
 }

@@ -1,0 +1,393 @@
+/**
+ * 像素艺术装饰元素
+ * 包含复古游戏风格的装饰和图案
+ */
+
+/* 像素艺术边框装饰 */
+.pixel-corner-decoration::before,
+.pixel-corner-decoration::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--pixel-green);
+}
+
+.pixel-corner-decoration::before {
+  top: -2px;
+  left: -2px;
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 20% 20%, 20% 100%, 0 100%);
+}
+
+.pixel-corner-decoration::after {
+  bottom: -2px;
+  right: -2px;
+  clip-path: polygon(80% 0, 100% 0, 100% 100%, 0 100%, 0 80%, 80% 80%);
+}
+
+/* 8位风格图标 */
+.pixel-icon-heart::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: linear-gradient(var(--pixel-red) 0, var(--pixel-red) 100%);
+  clip-path: polygon(25% 10%, 75% 10%, 100% 40%, 50% 100%, 0% 40%);
+  image-rendering: pixelated;
+}
+
+.pixel-icon-star::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: var(--pixel-yellow);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  image-rendering: pixelated;
+}
+
+.pixel-icon-diamond::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: var(--pixel-cyan);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  image-rendering: pixelated;
+}
+
+/* 像素化分隔线 */
+.pixel-divider {
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pixel-green) 0px,
+    var(--pixel-green) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  margin: var(--spacing-md) 0;
+  position: relative;
+}
+
+.pixel-divider::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pixel-cyan) 0px,
+    var(--pixel-cyan) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* 复古计分板样式 */
+.retro-scoreboard {
+  background: var(--dark-bg);
+  border: 3px solid var(--pixel-yellow);
+  padding: var(--spacing-md);
+  font-family: var(--font-pixel);
+  color: var(--pixel-yellow);
+  position: relative;
+}
+
+.retro-scoreboard::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--pixel-yellow) 0px,
+    var(--pixel-yellow) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  z-index: -1;
+}
+
+.score-display {
+  font-size: 2rem;
+  text-align: center;
+  text-shadow: 1px 0 0 var(--pixel-yellow), 0 1px 0 var(--pixel-yellow),
+    -1px 0 0 var(--pixel-yellow), 0 -1px 0 var(--pixel-yellow);
+}
+
+/* 像素化进度条 */
+.pixel-progress {
+  width: 100%;
+  height: 20px;
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pixel-green) 0px,
+    var(--pixel-green) 4px,
+    var(--pixel-cyan) 4px,
+    var(--pixel-cyan) 8px
+  );
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.pixel-progress-fill.animated {
+  animation: progressPulse 1s infinite;
+}
+
+@keyframes progressPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* 8位按钮变体 */
+.arcade-button {
+  background: var(--dark-bg);
+  border: none;
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 12px 24px;
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.arcade-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      135deg,
+      var(--pixel-green) 0px,
+      var(--pixel-green) 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      225deg,
+      var(--pixel-green) 0px,
+      var(--pixel-green) 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      315deg,
+      var(--pixel-green) 0px,
+      var(--pixel-green) 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      45deg,
+      var(--pixel-green) 0px,
+      var(--pixel-green) 4px,
+      transparent 4px
+    );
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.arcade-button:hover {
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  transform: translate(2px, 2px);
+}
+
+.arcade-button:active {
+  transform: translate(3px, 3px);
+}
+
+/* 像素化工具提示 */
+.pixel-tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.pixel-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark-bg);
+  color: var(--pixel-cyan);
+  border: 2px solid var(--pixel-cyan);
+  padding: 8px 12px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.pixel-tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 复古徽章 */
+.retro-badge {
+  display: inline-block;
+  background: var(--pixel-magenta);
+  color: var(--dark-bg);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.retro-badge::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--pixel-magenta);
+  clip-path: polygon(
+    0 4px,
+    4px 0,
+    calc(100% - 4px) 0,
+    100% 4px,
+    100% calc(100% - 4px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    0 calc(100% - 4px)
+  );
+  z-index: -1;
+}
+
+/* 像素化载入动画 */
+.pixel-loading {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(var(--pixel-green) 0, var(--pixel-green) 100%);
+  mask: radial-gradient(circle at 8px 8px, transparent 6px, black 8px),
+    radial-gradient(circle at 24px 8px, transparent 6px, black 8px),
+    radial-gradient(circle at 8px 24px, transparent 6px, black 8px),
+    radial-gradient(circle at 24px 24px, transparent 6px, black 8px);
+  mask-size: 16px 16px;
+  mask-position: 0 0, 16px 0, 0 16px, 16px 16px;
+  mask-repeat: no-repeat;
+  animation: pixelLoadingRotate 1s linear infinite;
+}
+
+@keyframes pixelLoadingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 复古菜单项 */
+.retro-menu-item {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 2px 0;
+  position: relative;
+  transition: none;
+}
+
+.retro-menu-item::before {
+  content: "▶";
+  position: absolute;
+  left: 8px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.retro-menu-item:hover {
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  padding-left: calc(var(--spacing-md) + 16px);
+}
+
+.retro-menu-item:hover::before {
+  opacity: 1;
+  color: var(--dark-bg);
+}
+
+/* 像素化阴影效果 */
+.pixel-drop-shadow {
+  box-shadow: 4px 0 0 var(--pixel-green), 0 4px 0 var(--pixel-green),
+    4px 4px 0 var(--pixel-green);
+}
+
+.pixel-inset-shadow {
+  box-shadow: inset 2px 2px 0 rgba(0, 255, 65, 0.3),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .pixel-corner-decoration::before,
+  .pixel-corner-decoration::after {
+    width: 12px;
+    height: 12px;
+  }
+
+  .retro-scoreboard {
+    padding: var(--spacing-sm);
+  }
+
+  .score-display {
+    font-size: 1.5rem;
+  }
+
+  .arcade-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,322 @@
+/**
+ * 复古像素风格样式
+ * 包含CRT效果、像素边框、扫描线等复古元素
+ */
+
+/* 添加像素字体 */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* CRT 显示器整体效果 */
+body {
+  position: relative;
+  background: var(--crt-bg);
+  font-family: var(--font-pixel);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* CRT 扫描线效果 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, var(--crt-scanline-opacity)) 2px,
+    rgba(0, 255, 65, var(--crt-scanline-opacity)) 4px
+  );
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* CRT 屏幕曲面效果 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border-radius: var(--crt-curve);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5),
+    inset 0 0 200px rgba(0, 0, 0, 0.3);
+}
+
+/* 噪点效果增强 */
+.noise {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="1" result="noise" seed="2"/><feColorMatrix in="noise" type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.08"/></svg>');
+  animation: noise 0.2s infinite;
+}
+
+@keyframes noise {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(-10%, 5%);
+  }
+  30% {
+    transform: translate(5%, -10%);
+  }
+  40% {
+    transform: translate(-5%, 15%);
+  }
+  50% {
+    transform: translate(-10%, 5%);
+  }
+  60% {
+    transform: translate(15%, 0);
+  }
+  70% {
+    transform: translate(0, 10%);
+  }
+  80% {
+    transform: translate(-15%, 0);
+  }
+  90% {
+    transform: translate(10%, 5%);
+  }
+  100% {
+    transform: translate(5%, 0);
+  }
+}
+
+/* 像素化边框效果 */
+.pixel-border {
+  border: 2px solid var(--pixel-green);
+  position: relative;
+}
+
+.pixel-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--pixel-green) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--pixel-green) 25%, transparent 25%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  z-index: -1;
+}
+
+/* 8位风格按钮 */
+.pixel-button {
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: none;
+  image-rendering: pixelated;
+}
+
+.pixel-button:hover {
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  box-shadow: 0 0 0 1px var(--pixel-green), 0 0 0 2px var(--dark-bg),
+    0 0 0 3px var(--pixel-green);
+}
+
+.pixel-button:active {
+  transform: translate(1px, 1px);
+}
+
+/* 像素化文本效果 */
+.pixel-text {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--pixel-green);
+  text-shadow: 1px 0 0 var(--pixel-green), 0 1px 0 var(--pixel-green),
+    -1px 0 0 var(--pixel-green), 0 -1px 0 var(--pixel-green);
+  image-rendering: pixelated;
+  letter-spacing: 1px;
+}
+
+/* 闪烁文本效果 */
+.blink-text {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 像素化终端效果 */
+.pixel-terminal {
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  font-family: var(--font-pixel);
+  color: var(--pixel-green);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-terminal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--pixel-green);
+  animation: terminal-scan 2s ease-in-out infinite;
+}
+
+@keyframes terminal-scan {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+/* 像素化图片效果 */
+.pixel-image {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: contrast(1.2) brightness(1.1) saturate(1.3);
+}
+
+/* 像素化导航效果 */
+.pixel-nav {
+  background: var(--dark-bg);
+  border-bottom: 2px solid var(--pixel-green);
+}
+
+.pixel-nav a {
+  color: var(--pixel-green);
+  font-family: var(--font-pixel);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  transition: none;
+}
+
+.pixel-nav a:hover {
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  border: 1px solid var(--pixel-green);
+}
+
+/* 像素化动画 */
+@keyframes pixel-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--pixel-green), 0 0 0 2px var(--dark-bg);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--pixel-green), 0 0 0 2px var(--dark-bg),
+      0 0 10px var(--pixel-green);
+  }
+}
+
+.pixel-glow {
+  animation: pixel-glow 2s ease-in-out infinite;
+}
+
+/* CRT 开机效果 */
+@keyframes crt-boot {
+  0% {
+    transform: scaleY(0.001) scaleX(1);
+    filter: brightness(3);
+  }
+  10% {
+    transform: scaleY(0.1) scaleX(1);
+    filter: brightness(2);
+  }
+  50% {
+    transform: scaleY(0.8) scaleX(1.02);
+    filter: brightness(1.5);
+  }
+  80% {
+    transform: scaleY(1.02) scaleX(1);
+    filter: brightness(1.2);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+    filter: brightness(1);
+  }
+}
+
+.crt-boot {
+  animation: crt-boot 1.5s ease-out;
+}
+
+/* 像素化滚动条 */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+  border: 1px solid var(--pixel-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pixel-green);
+  border: 1px solid var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pixel-cyan);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .pixel-text {
+    font-size: 12px;
+  }
+
+  .pixel-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  body::before {
+    background-size: 2px 2px;
+  }
+}

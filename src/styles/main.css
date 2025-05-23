@@ -6,6 +6,9 @@
 /* 1. 基础样式 - 最先加载 */
 @import url("./variables.css");
 @import url("./base.css");
+@import url("./pixel-retro.css");
+@import url("./pixel-decorations.css");
+@import url("./ascii-art.css");
 
 /* 2. 组件样式 */
 @import url("../components/navbar.css");
@@ -15,7 +18,7 @@
 
 /* 4. 页面特定样式 */
 
-/* Hero Section */
+/* Hero Section - 像素风格调整 */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -24,106 +27,104 @@
   position: relative;
   text-align: center;
   padding: 0 var(--spacing-lg);
+  background: var(--dark-bg);
 }
 
 .hero-content {
   z-index: var(--z-content);
   max-width: 800px;
-  transition: transform var(--transition-normal) ease;
+  transition: none;
 }
 
 .hero h1 {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
+  font-family: var(--font-pixel);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: normal;
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 3px;
+  color: var(--pixel-green);
+  text-shadow: 2px 0 0 var(--pixel-green), 0 2px 0 var(--pixel-green),
+    -2px 0 0 var(--pixel-green), 0 -2px 0 var(--pixel-green);
 }
 
 .hero h1 .accent {
-  color: var(--neon-pink);
-  text-shadow: 0 0 20px var(--neon-pink);
+  color: var(--pixel-cyan);
+  text-shadow: 2px 0 0 var(--pixel-cyan), 0 2px 0 var(--pixel-cyan),
+    -2px 0 0 var(--pixel-cyan), 0 -2px 0 var(--pixel-cyan);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-text);
-  font-family: var(--font-primary);
+  color: var(--pixel-cyan);
+  font-family: var(--font-pixel);
 }
 
 .cta-button {
   display: inline-block;
   padding: var(--spacing-sm) var(--spacing-lg);
-  border: 2px solid var(--neon-blue);
-  color: var(--neon-blue);
+  border: 2px solid var(--pixel-green);
+  color: var(--pixel-green);
   text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 700;
+  font-family: var(--font-pixel);
+  font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: transparent;
-  transition: all var(--transition-normal) ease;
+  background: var(--dark-bg);
+  transition: none;
   position: relative;
   overflow: hidden;
+  margin: 0 var(--spacing-xs);
 }
 
 .cta-button::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(5, 217, 232, 0.2),
-    transparent
-  );
-  transition: left var(--transition-slow) ease;
-}
-
-.cta-button:hover::before {
-  left: 100%;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--pixel-green) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--pixel-green) 25%, transparent 25%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  z-index: -1;
 }
 
 .cta-button:hover {
-  color: var(--text-color);
-  background-color: var(--neon-blue);
-  box-shadow: var(--shadow-neon-blue);
-  transform: translateY(-2px);
+  color: var(--dark-bg);
+  background-color: var(--pixel-green);
+  box-shadow: var(--shadow-pixel-green);
+  transform: none;
 }
 
-/* Scanner Line */
+/* Scanner Line - 像素化效果 */
 .scanner-line {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--neon-blue),
-    transparent
-  );
-  animation: scan 2s linear infinite;
+  background: var(--pixel-green);
+  animation: pixelScan 3s linear infinite;
+  box-shadow: 0 0 10px var(--pixel-green);
 }
 
-@keyframes scan {
+@keyframes pixelScan {
   0% {
     transform: translateY(0);
+    opacity: 1;
   }
   100% {
     transform: translateY(100vh);
+    opacity: 0.3;
   }
 }
 
-/* About Section */
+/* About Section - 像素风格 */
 .about {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+  background: var(--darker-bg);
 }
 
 .about-content {
@@ -136,43 +137,43 @@
 }
 
 .profile-card {
-  background: rgba(26, 16, 37, 0.8);
-  border: 1px solid var(--neon-pink);
-  border-radius: var(--border-radius-lg);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-cyan);
   padding: var(--spacing-lg);
   text-align: center;
-  backdrop-filter: blur(10px);
-  transition: all var(--transition-normal) ease;
+  transition: none;
+  position: relative;
 }
 
 .profile-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-neon-pink);
+  transform: none;
+  box-shadow: var(--shadow-pixel-cyan);
 }
 
 .profile-image {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
-  border: 3px solid var(--neon-pink);
+  border: 3px solid var(--pixel-cyan);
   margin: 0 auto var(--spacing-md);
   object-fit: cover;
-  filter: grayscale(100%) contrast(120%);
-  transition: all var(--transition-normal) ease;
+  filter: contrast(1.2) brightness(1.1);
+  transition: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .profile-image:hover {
-  filter: grayscale(0%) contrast(100%);
-  box-shadow: 0 0 30px var(--neon-pink);
+  filter: contrast(1.3) brightness(1.2) saturate(1.2);
+  box-shadow: 0 0 20px var(--pixel-cyan);
 }
 
 .terminal-container {
-  background: #000;
-  border: 1px solid var(--neon-green);
-  border-radius: var(--border-radius-md);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
   padding: var(--spacing-md);
-  font-family: var(--font-primary);
-  color: var(--neon-green);
+  font-family: var(--font-pixel);
+  color: var(--pixel-green);
   font-size: 0.9rem;
   line-height: 1.4;
   position: relative;
@@ -184,73 +185,67 @@
   gap: var(--spacing-xs);
   margin-bottom: var(--spacing-sm);
   padding-bottom: var(--spacing-xs);
-  border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+  border-bottom: 1px solid var(--pixel-green);
 }
 
 .terminal-btn {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
+  border: 1px solid var(--pixel-green);
 }
 
 .terminal-btn.close {
-  background: #ff5f57;
+  background: var(--pixel-red);
 }
 .terminal-btn.minimize {
-  background: #ffbd2e;
+  background: var(--pixel-yellow);
 }
 .terminal-btn.maximize {
-  background: #28ca42;
+  background: var(--pixel-green);
 }
 
 .terminal-text {
-  white-space: pre-line;
+  margin: var(--spacing-xs) 0;
+  font-family: var(--font-pixel);
+  color: var(--pixel-green);
 }
 
-/* Matrix Section */
+/* Matrix Section - 像素风格调整 */
 .matrix {
-  min-height: 100vh;
-  background: linear-gradient(180deg, var(--darker-bg) 0%, #001100 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: var(--dark-bg);
   position: relative;
 }
 
 .matrix-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-lg);
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--spacing-lg);
-  align-items: start;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .matrix-canvas-wrapper {
   position: relative;
-  border: 2px solid var(--neon-green);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  background: #000;
   min-height: 500px;
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  overflow: hidden;
 }
 
 #matrix-canvas {
-  display: block;
   width: 100%;
-  height: 500px;
-  background: #000;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .matrix-controls {
-  background: rgba(0, 17, 0, 0.8);
-  border: 1px solid var(--neon-green);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-md);
-  backdrop-filter: blur(10px);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-cyan);
+  padding: var(--spacing-lg);
+  height: fit-content;
 }
 
 .control-group {
@@ -264,81 +259,90 @@
 .control-group label {
   display: block;
   margin-bottom: var(--spacing-xs);
-  color: var(--neon-green);
-  font-family: var(--font-primary);
-  font-size: 0.9rem;
+  color: var(--pixel-cyan);
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 .control-button {
-  width: 100%;
-  padding: var(--spacing-sm);
-  background: transparent;
-  border: 1px solid var(--neon-green);
-  color: var(--neon-green);
-  font-family: var(--font-primary);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-green);
+  color: var(--pixel-green);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-pixel);
+  font-size: 12px;
   cursor: pointer;
-  transition: all var(--transition-normal) ease;
-  margin-bottom: var(--spacing-xs);
+  margin-right: var(--spacing-sm);
+  text-transform: uppercase;
+  transition: none;
 }
 
 .control-button:hover {
-  background: var(--neon-green);
-  color: #000;
-  box-shadow: 0 0 10px var(--neon-green);
+  background: var(--pixel-green);
+  color: var(--dark-bg);
+  box-shadow: var(--shadow-pixel-green);
 }
 
 .control-slider {
   width: 100%;
-  -webkit-appearance: none;
-  height: 6px;
-  background: rgba(57, 255, 20, 0.3);
+  height: 20px;
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-cyan);
   outline: none;
-  border-radius: 3px;
+  -webkit-appearance: none;
 }
 
 .control-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 16px;
+  width: 20px;
   height: 16px;
-  background: var(--neon-green);
-  border-radius: 50%;
+  background: var(--pixel-cyan);
+  border: 1px solid var(--dark-bg);
   cursor: pointer;
-  box-shadow: 0 0 5px var(--neon-green);
 }
 
 .stats-display {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-md);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(57, 255, 20, 0.3);
+  display: flex;
+  gap: var(--spacing-md);
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-yellow);
+  padding: var(--spacing-sm);
+  margin: var(--spacing-md) 0;
 }
 
 .stat-item {
   text-align: center;
+  flex: 1;
 }
 
 .stat-value {
   display: block;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--neon-green);
-  text-shadow: 0 0 5px var(--neon-green);
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--pixel-yellow);
+  font-family: var(--font-pixel);
 }
 
 .stat-label {
   font-size: 0.8rem;
-  color: rgba(57, 255, 20, 0.7);
+  color: var(--pixel-cyan);
+  text-transform: uppercase;
+  font-family: var(--font-pixel);
 }
 
 .matrix-instructions {
+  background: var(--dark-bg);
+  border: 2px solid var(--pixel-magenta);
+  padding: var(--spacing-md);
   margin-top: var(--spacing-md);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(57, 255, 20, 0.3);
-  font-size: 0.8rem;
-  color: rgba(57, 255, 20, 0.7);
-  line-height: 1.4;
+}
+
+.matrix-instructions p {
+  margin: var(--spacing-xs) 0;
+  font-family: var(--font-pixel);
+  color: var(--pixel-magenta);
+  font-size: 12px;
 }
 
 /* 故障效果 */

@@ -6,6 +6,12 @@
 // 导入工具模块
 import { UIEffectsManager } from "./ui-effects.js";
 
+// 导入复古效果模块
+import "./retro-effects.js";
+
+// 导入ASCII艺术增强器
+import "./ascii-art-enhancer.js";
+
 /**
  * 导航组件类
  */
@@ -28,6 +34,9 @@ class Navigation {
     if (this.hamburger) {
       this.hamburger.addEventListener("click", () => this.toggleMenu());
     }
+
+    // 设置声音控制按钮
+    this.setupSoundToggle();
   }
 
   toggleMenu() {
@@ -54,6 +63,42 @@ class Navigation {
         }
       });
     });
+  }
+
+  // 声音控制功能
+  setupSoundToggle() {
+    const soundToggle = document.getElementById("sound-toggle");
+    const soundIcon = document.getElementById("sound-icon");
+
+    if (soundToggle && soundIcon) {
+      soundToggle.addEventListener("click", () => {
+        if (window.retroEffects) {
+          const soundEnabled = window.retroEffects.toggleSound();
+          this.updateSoundButton(soundToggle, soundIcon, soundEnabled);
+        }
+      });
+
+      // 初始化按钮状态
+      const initialState = window.retroEffects
+        ? window.retroEffects.isSoundEnabled()
+        : true;
+      this.updateSoundButton(soundToggle, soundIcon, initialState);
+    }
+  }
+
+  // 更新声音按钮的显示状态
+  updateSoundButton(button, icon, soundEnabled) {
+    if (soundEnabled) {
+      button.classList.remove("muted");
+      button.classList.add("active");
+      icon.className = "fas fa-volume-up";
+      button.title = "关闭声音";
+    } else {
+      button.classList.add("muted");
+      button.classList.remove("active");
+      icon.className = "fas fa-volume-mute";
+      button.title = "开启声音";
+    }
   }
 }
 
@@ -152,6 +197,11 @@ class App {
   }
 
   initializeEffects() {
+    // 初始化复古效果
+    if (window.retroEffects) {
+      window.retroEffects.initPageLoadEffects();
+    }
+
     // 延迟初始化Matrix效果
     setTimeout(() => {
       // 动态导入Matrix模块避免阻塞主线程
