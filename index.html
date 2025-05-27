@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./src/styles/main.css" />
     <link rel="stylesheet" href="./src/styles/particle-system.css" />
     <link rel="stylesheet" href="./src/styles/music-visualizer.css" />
+    <link rel="stylesheet" href="./src/styles/fun-stuff.css" />
     <!-- Font Icons -->
     <link
       rel="stylesheet"
@@ -152,8 +153,13 @@
             </p>
             <div class="ascii-art pixel-style animated">
               <span class="ascii-border">┌───────────────────────┐</span>
-              <span class="ascii-text">| Welcome to My&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-              <span class="ascii-text">| Personal Website!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+              <span class="ascii-text"
+                >| Welcome to
+                My&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span
+              >
+              <span class="ascii-text"
+                >| Personal Website!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span
+              >
               <span class="ascii-border">└───────────────────────┘</span>
               <span class="ascii-character">/|\</span>
               <span class="ascii-character">(˚ˎ。7</span>
@@ -342,6 +348,215 @@
               <p class="pixel-text">
                 <i class="fas fa-arrows-alt"></i> Move mouse to interact
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retro Snake Game -->
+      <div class="fun-item">
+        <div class="section-header">
+          <h3 class="cyber-heading">
+            Retro Snake Game<span class="accent">.</span>
+          </h3>
+        </div>
+        <div class="snake-game-container pixel-border pixel-corner-decoration">
+          <div class="game-header">
+            <h4 class="pixel-text">
+              <i class="fas fa-gamepad"></i>
+              Snake Game <span class="retro-badge">ARCADE</span>
+            </h4>
+            <div class="game-stats">
+              <div class="stat-item">
+                <span class="stat-label pixel-text">SCORE</span>
+                <span class="stat-value pixel-text" id="snake-score">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label pixel-text">HIGH</span>
+                <span class="stat-value pixel-text" id="snake-high-score"
+                  >0</span
+                >
+              </div>
+              <div class="stat-item">
+                <span class="stat-label pixel-text">LEVEL</span>
+                <span class="stat-value pixel-text" id="snake-level">1</span>
+              </div>
+            </div>
+          </div>
+          <div class="game-canvas-wrapper">
+            <canvas id="snake-canvas"></canvas>
+            <div class="game-overlay" id="game-overlay">
+              <div class="game-message">
+                <h3 class="pixel-text glitch" data-text="GAME OVER">
+                  GAME OVER
+                </h3>
+                <p class="pixel-text">Press SPACE to restart</p>
+              </div>
+            </div>
+          </div>
+          <div class="game-controls">
+            <button id="snake-start" class="arcade-button">
+              <i class="fas fa-play"></i> Start Game
+            </button>
+            <button id="snake-pause" class="arcade-button">
+              <i class="fas fa-pause"></i> Pause
+            </button>
+            <button id="snake-reset" class="arcade-button">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+          </div>
+          <div class="game-instructions">
+            <p class="pixel-text">
+              <i class="fas fa-arrows-alt"></i> Use Arrow Keys or WASD to move
+            </p>
+            <p class="pixel-text">
+              <i class="fas fa-apple-alt"></i> Eat food to grow and increase
+              score
+            </p>
+            <p class="pixel-text">
+              <i class="fas fa-skull"></i> Don't hit walls or yourself!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pixel Art Generator -->
+      <div class="fun-item">
+        <div class="section-header">
+          <h3 class="cyber-heading">
+            Pixel Art Generator<span class="accent">.</span>
+          </h3>
+        </div>
+        <div class="pixel-art-container pixel-border pixel-corner-decoration">
+          <div class="pixel-art-header">
+            <h4 class="pixel-text">
+              <i class="fas fa-palette"></i>
+              8-Bit Art Converter <span class="retro-badge">BETA</span>
+            </h4>
+          </div>
+          <div class="pixel-art-content">
+            <div class="upload-area" id="upload-area">
+              <input type="file" id="image-upload" accept="image/*" hidden />
+              <div class="upload-placeholder">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p class="pixel-text">Drop image here or click to upload</p>
+                <p class="pixel-text small">Supported: JPG, PNG, GIF</p>
+              </div>
+            </div>
+            <div class="pixel-art-preview" id="pixel-art-preview">
+              <canvas id="pixel-art-canvas"></canvas>
+            </div>
+          </div>
+          <div class="pixel-art-controls">
+            <div class="control-group">
+              <label class="pixel-text">Pixel Size:</label>
+              <input
+                type="range"
+                id="pixel-size"
+                min="2"
+                max="20"
+                value="8"
+                class="control-slider"
+              />
+              <span class="pixel-text" id="pixel-size-value">8</span>
+            </div>
+            <div class="control-group">
+              <label class="pixel-text">Color Palette:</label>
+              <select id="color-palette" class="pixel-select">
+                <option value="gameboy">Game Boy</option>
+                <option value="nes">NES</option>
+                <option value="c64">Commodore 64</option>
+                <option value="monochrome">Monochrome</option>
+              </select>
+            </div>
+            <div class="button-group">
+              <button id="apply-pixelate" class="arcade-button">
+                <i class="fas fa-magic"></i> Pixelate
+              </button>
+              <button id="download-pixel-art" class="arcade-button">
+                <i class="fas fa-download"></i> Download
+              </button>
+              <button id="clear-pixel-art" class="arcade-button">
+                <i class="fas fa-trash"></i> Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Speed Test -->
+      <div class="fun-item">
+        <div class="section-header">
+          <h3 class="cyber-heading">
+            Terminal Typing Test<span class="accent">.</span>
+          </h3>
+        </div>
+        <div class="typing-test-container pixel-border pixel-corner-decoration">
+          <div class="typing-header">
+            <h4 class="pixel-text">
+              <i class="fas fa-keyboard"></i>
+              Speed Typing Challenge <span class="retro-badge">HACK</span>
+            </h4>
+            <div class="typing-stats">
+              <div class="stat-item">
+                <span class="stat-value pixel-text" id="wpm-count">0</span>
+                <span class="stat-label pixel-text">WPM</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value pixel-text" id="accuracy">100</span>
+                <span class="stat-label pixel-text">ACC%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value pixel-text" id="time-left">60</span>
+                <span class="stat-label pixel-text">TIME</span>
+              </div>
+            </div>
+          </div>
+          <div class="typing-content">
+            <div class="text-display pixel-terminal" id="text-display">
+              <p class="target-text pixel-text" id="target-text"></p>
+            </div>
+            <div class="input-area">
+              <textarea
+                id="typing-input"
+                class="typing-input pixel-text"
+                placeholder="Click here and start typing..."
+                disabled
+              ></textarea>
+            </div>
+          </div>
+          <div class="typing-controls">
+            <button id="start-typing" class="arcade-button">
+              <i class="fas fa-play"></i> Start Test
+            </button>
+            <button id="reset-typing" class="arcade-button">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+            <div class="difficulty-select">
+              <label class="pixel-text">Difficulty:</label>
+              <select id="typing-difficulty" class="pixel-select">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="code">Code Mode</option>
+              </select>
+            </div>
+          </div>
+          <div class="typing-results" id="typing-results" style="display: none">
+            <h4 class="pixel-text">Results</h4>
+            <div class="result-grid">
+              <div class="result-item">
+                <span class="result-label">Final WPM</span>
+                <span class="result-value" id="final-wpm">0</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Accuracy</span>
+                <span class="result-value" id="final-accuracy">0%</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Total Words</span>
+                <span class="result-value" id="total-words">0</span>
+              </div>
             </div>
           </div>
         </div>

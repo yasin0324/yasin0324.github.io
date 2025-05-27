@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature Test - Yasin Portfolio</title>
+    <style>
+      body {
+        background: #0a0a0a;
+        color: #00ff00;
+        font-family: "Courier New", monospace;
+        padding: 20px;
+      }
+      .test-section {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #00ff80;
+        border-radius: 5px;
+      }
+      .test-result {
+        margin: 10px 0;
+        padding: 5px;
+      }
+      .success {
+        color: #00ff00;
+      }
+      .error {
+        color: #ff0080;
+      }
+      .warning {
+        color: #ffff00;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 Feature Test Suite</h1>
+
+    <div class="test-section">
+      <h2>📋 Test Results</h2>
+      <div id="test-results"></div>
+    </div>
+
+    <script>
+      const testResults = document.getElementById("test-results");
+
+      function addResult(test, status, message) {
+        const div = document.createElement("div");
+        div.className = `test-result ${status}`;
+        div.innerHTML = `${
+          status === "success" ? "✅" : status === "error" ? "❌" : "⚠️"
+        } ${test}: ${message}`;
+        testResults.appendChild(div);
+      }
+
+      // Test 1: Check if all required elements exist
+      function testElementsExist() {
+        const requiredElements = [
+          "snake-canvas",
+          "pixel-art-canvas",
+          "target-text",
+          "typing-input",
+          "upload-area",
+          "game-overlay",
+        ];
+
+        requiredElements.forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            addResult(`Element ${id}`, "success", "Found");
+          } else {
+            addResult(`Element ${id}`, "error", "Not found");
+          }
+        });
+      }
+
+      // Test 2: Check if JavaScript modules can be imported
+      async function testModuleImports() {
+        try {
+          // Test if we can access the classes
+          const modules = [
+            "./src/scripts/snake-game.js",
+            "./src/scripts/pixel-art-generator.js",
+            "./src/scripts/typing-test.js",
+          ];
+
+          for (const module of modules) {
+            try {
+              await import(module);
+              addResult(`Module ${module}`, "success", "Imported successfully");
+            } catch (error) {
+              addResult(
+                `Module ${module}`,
+                "error",
+                `Import failed: ${error.message}`
+              );
+            }
+          }
+        } catch (error) {
+          addResult("Module Import Test", "error", error.message);
+        }
+      }
+
+      // Test 3: Check Canvas support
+      function testCanvasSupport() {
+        const canvas = document.createElement("canvas");
+        if (canvas.getContext) {
+          addResult("Canvas Support", "success", "2D context available");
+
+          // Test WebGL support
+          const gl =
+            canvas.getContext("webgl") ||
+            canvas.getContext("experimental-webgl");
+          if (gl) {
+            addResult("WebGL Support", "success", "WebGL context available");
+          } else {
+            addResult("WebGL Support", "warning", "WebGL not available");
+          }
+        } else {
+          addResult("Canvas Support", "error", "Canvas not supported");
+        }
+      }
+
+      // Test 4: Check File API support
+      function testFileAPISupport() {
+        if (
+          window.File &&
+          window.FileReader &&
+          window.FileList &&
+          window.Blob
+        ) {
+          addResult("File API Support", "success", "All File APIs available");
+        } else {
+          addResult(
+            "File API Support",
+            "error",
+            "File APIs not fully supported"
+          );
+        }
+      }
+
+      // Test 5: Check Local Storage
+      function testLocalStorage() {
+        try {
+          localStorage.setItem("test", "value");
+          const value = localStorage.getItem("test");
+          localStorage.removeItem("test");
+
+          if (value === "value") {
+            addResult("Local Storage", "success", "Working correctly");
+          } else {
+            addResult("Local Storage", "error", "Not working correctly");
+          }
+        } catch (error) {
+          addResult("Local Storage", "error", `Error: ${error.message}`);
+        }
+      }
+
+      // Test 6: Check Audio API support
+      function testAudioAPISupport() {
+        if (window.AudioContext || window.webkitAudioContext) {
+          addResult("Audio API Support", "success", "AudioContext available");
+        } else {
+          addResult(
+            "Audio API Support",
+            "warning",
+            "AudioContext not available"
+          );
+        }
+      }
+
+      // Run all tests
+      async function runTests() {
+        addResult("Test Suite", "success", "Starting tests...");
+
+        testCanvasSupport();
+        testFileAPISupport();
+        testLocalStorage();
+        testAudioAPISupport();
+
+        // Wait a bit then test modules
+        setTimeout(async () => {
+          await testModuleImports();
+          addResult("Test Suite", "success", "All tests completed!");
+        }, 1000);
+      }
+
+      // Start tests when page loads
+      window.addEventListener("load", runTests);
+    </script>
+  </body>
+</html>

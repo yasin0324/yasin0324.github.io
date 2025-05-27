@@ -19,6 +19,9 @@ import "./matrix.js";
 import ParticleSystem from "./particle-system.js";
 import MusicVisualizer from "./music-visualizer.js";
 import TerminalSimulator from "./terminal-simulator.js";
+import { SnakeGame } from "./snake-game.js";
+import { PixelArtGenerator } from "./pixel-art-generator.js";
+import { TypingTest } from "./typing-test.js";
 
 /**
  * Navigation component class
@@ -182,6 +185,9 @@ class App {
     this.particleSystem = null;
     this.musicVisualizer = null;
     this.terminalSimulator = null;
+    this.snakeGame = null;
+    this.pixelArtGenerator = null;
+    this.typingTest = null;
 
     this.init();
   }
@@ -244,6 +250,9 @@ class App {
     this.initParticleSystem();
     this.initMusicVisualizer();
     this.initTerminalSimulator();
+    this.initSnakeGame();
+    this.initPixelArtGenerator();
+    this.initTypingTest();
     this.setupParticleControls();
     this.setupVisualizerControls();
     this.setupTerminalControls();
@@ -273,6 +282,30 @@ class App {
       // 将引用添加到全局，以便终端命令可以访问其他系统
       window.terminalSimulator = this.terminalSimulator;
       console.log("Terminal simulator initialized");
+    }
+  }
+
+  initSnakeGame() {
+    const canvas = document.getElementById("snake-canvas");
+    if (canvas) {
+      this.snakeGame = new SnakeGame();
+      console.log("Snake game initialized");
+    }
+  }
+
+  initPixelArtGenerator() {
+    const canvas = document.getElementById("pixel-art-canvas");
+    if (canvas) {
+      this.pixelArtGenerator = new PixelArtGenerator();
+      console.log("Pixel art generator initialized");
+    }
+  }
+
+  initTypingTest() {
+    const targetText = document.getElementById("target-text");
+    if (targetText) {
+      this.typingTest = new TypingTest();
+      console.log("Typing test initialized");
     }
   }
 
