@@ -15,6 +15,7 @@
 @import url("./particle-system.css");
 @import url("./music-visualizer.css");
 @import url("./terminal-simulator.css");
+@import url("./fun-stuff.css");
 
 /* 2. 组件样式 */
 @import url("../components/navbar.css");
