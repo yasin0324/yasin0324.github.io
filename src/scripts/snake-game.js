@@ -114,6 +114,7 @@ export class SnakeGame {
     this.gameSpeed = 150;
     this.isRunning = false;
     this.isPaused = false;
+    this.isGameOver = false;
 
     this.generateFood();
     this.updateScoreDisplay();
@@ -123,6 +124,7 @@ export class SnakeGame {
 
   startGame() {
     if (this.isRunning) return;
+    if (this.isGameOver) this.resetGame();
 
     this.isRunning = true;
     this.isPaused = false;
@@ -270,7 +272,6 @@ export class SnakeGame {
   }
 
   draw() {
-    this.ctx.fillStyle = this.colors.background;
     this.ctx.fillStyle = this.colors.background;
     this.ctx.fillRect(0, 0, this.canvasSize, this.canvasSize);
 
